@@ -1,11 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace tivixlabs_test.BaseActions
 {
@@ -28,6 +23,16 @@ namespace tivixlabs_test.BaseActions
         {
             SelectElement oSelect = new SelectElement(element);
             oSelect.SelectByText(text);
+        }
+
+        public static void TypeDataToField(By element, string text)
+        {
+            driver.FindElement((element)).SendKeys(text);
+        }
+
+        public static void ClickElement(By element)
+        {
+            driver.FindElement((element)).Click();
         }
     }
 }

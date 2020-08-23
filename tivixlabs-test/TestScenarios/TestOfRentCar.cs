@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Chrome;
 using tivixlabs_test.BaseActions;
@@ -8,8 +8,6 @@ namespace tivixlabs_test
     [TestClass]
     public class TestOfRentCar
     {
-        //ChromeDriver driver = new ChromeDriver();
-
         string tivixLabsPage = "http://qalab.pl.tivixlabs.com/";
 
         [TestInitialize]
@@ -21,12 +19,14 @@ namespace tivixlabs_test
         [TestMethod]
         public void UserShouldBeAbleToRentCar()
         {
-            SearchPage.SelectValidMandatoryData();
+            SearchPage.SearchCarForRent();
+            
         }
 
         [TestCleanup]
         public void Close()
         {
+            Thread.Sleep(16000);
             BaseClass.CloseBrowser();
         }
     }
