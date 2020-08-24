@@ -1,14 +1,15 @@
 ﻿using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium.Chrome;
 using tivixlabs_test.BaseActions;
+using tivixlabs_test.PageObjects;
 
 namespace tivixlabs_test
 {
     [TestClass]
     public class TestOfRentCar
     {
-        string tivixLabsPage = "http://qalab.pl.tivixlabs.com/";
+        private string tivixLabsPage = "http://qalab.pl.tivixlabs.com/";
+        private string successPage = "http://qalab.pl.tivixlabs.com/success";
 
         [TestInitialize]
         public void NavigateToMainPage()
@@ -20,13 +21,18 @@ namespace tivixlabs_test
         public void UserShouldBeAbleToRentCar()
         {
             SearchPage.SearchCarForRent();
+            SearchPage.ClickFirstRentButton();
+            DetailsPage.ClickRent();
+            SummaryPage.TypeUserDetails();
+            SummaryPage.ClickRent();
+            Assertions.AssertUserIsOnPage(successPage);
             
         }
 
         [TestCleanup]
         public void Close()
         {
-            Thread.Sleep(16000);
+            Thread.Sleep(8000);
             BaseClass.CloseBrowser();
         }
     }

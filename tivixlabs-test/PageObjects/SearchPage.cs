@@ -11,6 +11,7 @@ namespace tivixlabs_test
         private static By pickUpDate = By.Name("pickup");
         private static By dropOffDate = By.Name("dropoff");
         private static By searchButton = By.XPath("//button[@type=\'submit\']");
+        private static By rentButton = By.XPath("//tbody/tr[1]/td[6]/a");
 
         private static DateTime seven = DateTime.Now.AddDays(7);
 
@@ -25,6 +26,11 @@ namespace tivixlabs_test
             TypeDataToField(pickUpDate, todayDate);
             TypeDataToField(dropOffDate, todayPlusSeven);
             ClickElement(searchButton);
+        }
+
+        public static void ClickFirstRentButton()
+        {
+            ClickElement(rentButton);
         }
     }
 }
