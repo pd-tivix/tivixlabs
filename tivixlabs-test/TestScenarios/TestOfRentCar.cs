@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using tivixlabs_test.BaseActions;
 using tivixlabs_test.PageObjects;
 
@@ -8,8 +7,8 @@ namespace tivixlabs_test
     [TestClass]
     public class TestOfRentCar
     {
-        private string tivixLabsPage = "http://qalab.pl.tivixlabs.com/";
-        private string successPage = "http://qalab.pl.tivixlabs.com/success";
+        private const string tivixLabsPage = "http://qalab.pl.tivixlabs.com/";
+        private const string successPage = "http://qalab.pl.tivixlabs.com/success";
 
         [TestInitialize]
         public void NavigateToMainPage()
@@ -22,17 +21,15 @@ namespace tivixlabs_test
         {
             SearchPage.SearchCarForRent();
             SearchPage.ClickFirstRentButton();
-            DetailsPage.ClickRent();
-            SummaryPage.TypeUserDetails();
-            SummaryPage.ClickRent();
-            Assertions.AssertUserIsOnPage(successPage);
-            
+            CommonActions.ClickRent();
+            SummaryPage.TypeValidUserDetails();
+            CommonActions.ClickRent();
+            SuccessPage.AssertUserIsOnSuccessPage(successPage);
         }
 
         [TestCleanup]
         public void Close()
         {
-            Thread.Sleep(8000);
             BaseClass.CloseBrowser();
         }
     }
